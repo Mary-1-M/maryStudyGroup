@@ -1,0 +1,26 @@
+﻿@model List<maryStudyGroup.Models.StudyGroup>
+
+<h2>INF272 Study Group Members</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().StudentNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Surname)</th>
+            <th>@Html.DisplayNameFor(model => model.First().EmailAddress)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentNumber</td>
+                <td>@student.Name</td>
+                <td>@student.Surname</td>
+                <td>@student.EmailAddress</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
