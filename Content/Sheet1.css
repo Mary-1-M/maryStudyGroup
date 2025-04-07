@@ -1,0 +1,137 @@
+﻿
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #9d825d;
+}
+
+.navigation ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.navigation li {
+    flex: 1 0 auto;
+}
+
+.navigation a {
+    display: block;
+    padding: 12px 20px;
+    background-color: #674f2d;
+    color: white;
+    text-decoration: none;
+    border-right: 2px solid #666;
+    transition: background-color 0.3s;
+}
+
+
+.navigation a:hover {
+    background-color: #d2b48c;
+}
+
+.navigation .active a {
+    background-color: #e4d5b4;
+}
+
+.navbar-nav {
+    flex-wrap: wrap;
+}
+
+
+.image {
+    width: 200px;
+    height: 200px;
+    transition: transform 0.3s;
+    object-fit: fill;
+}
+
+    .image:hover {
+        transform: scaleX(-1);
+    }
+
+.left {
+    float: left;
+    margin-right: 20px;
+}
+
+.right {
+    float: right;
+    margin-left: 20px;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: auto;
+}
+.three-column-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.column {
+    flex: 1;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+    .column img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.panel-image {
+    max-width: 200px;
+    margin: 0 15px 15px 0;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+
+.dropdown-menu {
+    background-color: #674f2d; 
+    border: none;
+}
+
+    .dropdown-menu .dropdown-item {
+        color: white;
+        background-color: #333;
+        padding: 10px 15px;
+        border-bottom: 1px solid #666;
+        transition: background-color 0.3s;
+    }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #666;
+        }
+

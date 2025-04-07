@@ -14,11 +14,11 @@ namespace maryStudyGroup.Controllers
         {
             List<Models.StudyGroup> students = new List<Models.StudyGroup>();
 
-            students.Add(new Models.StudyGroup { StudentNumber = "23643570", Name = "Mary", Surname = "Modiba", EmailAddress = "u23643570@tuks.co.za" });
-            students.Add(new Models.StudyGroup { StudentNumber = "24765377", Name = "Oratile", Surname = "Seshabela", EmailAddress = "u24765377@tuks.co.za" });
-            students.Add(new Models.StudyGroup { StudentNumber = "23972123", Name = "Mosa", Surname = "Mane", EmailAddress = "u23972123@tuks.co.za" });
-            students.Add(new Models.StudyGroup { StudentNumber = "23854830", Name = "Dakalo", Surname = "Nemamilwe", EmailAddress = "u23854830@tuks.co.za" });
-            students.Add(new Models.StudyGroup { StudentNumber = "23598744", Name = "Khumo", Surname = "Mokaila", EmailAddress = "u23598744@tuks.co.za" });
+            students.Add(new Models.StudyGroup { StudentNumber = "23643570", Name = "Mary", Surname = "Modiba", EmailAddress = "u23643570@tuks.co.za", myLink = "~/HTML/Mary.html" });
+            students.Add(new Models.StudyGroup { StudentNumber = "24765377", Name = "Oratile", Surname = "Seshabela", EmailAddress = "u24765377@tuks.co.za", myLink = "~/HTML/Oratile.html" });
+            students.Add(new Models.StudyGroup { StudentNumber = "23972123", Name = "Mosa", Surname = "Mane", EmailAddress = "u23972123@tuks.co.za", myLink = "~/HTML/Mosa.html" });
+            students.Add(new Models.StudyGroup { StudentNumber = "23854830", Name = "Dakalo", Surname = "Nemamilwe", EmailAddress = "u23854830@tuks.co.za", myLink = "~/HTML/Dakalo.html" });
+            students.Add(new Models.StudyGroup { StudentNumber = "23598744", Name = "Khumo", Surname = "Mokaila", EmailAddress = "u23598744@tuks.co.za", myLink = "~/HTML/Khumo.html" });
 
             return View(students);
         }

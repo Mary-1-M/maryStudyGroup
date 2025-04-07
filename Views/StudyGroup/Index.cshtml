@@ -2,25 +2,57 @@
 
 <h2>INF272 Study Group Members</h2>
 
-<table class="table">
+<table id="studyGroupTable" class="table table-bordered">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.First().StudentNumber)</th>
             <th>@Html.DisplayNameFor(model => model.First().Name)</th>
             <th>@Html.DisplayNameFor(model => model.First().Surname)</th>
             <th>@Html.DisplayNameFor(model => model.First().EmailAddress)</th>
+            <th>Profile</th>
+            <th>Actions</th> <!-- New Column -->
         </tr>
     </thead>
     <tbody>
         @foreach (var student in Model)
         {
-            <tr>
+            <tr class="student-row" data-name="@student.Name">
                 <td>@student.StudentNumber</td>
                 <td>@student.Name</td>
                 <td>@student.Surname</td>
                 <td>@student.EmailAddress</td>
+                <td>
+                    <a href="@Url.Content(student.myLink)" class="btn btn-primary">LINK</a>
+                </td>
+                <td>
+                    <button onclick="removeRow(this)" class="btn btn-danger">Remove</button>
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
+@section scripts {
+    <script>
+        function removeRow(button) {
+            // Gets the <tr> parent of the button and removes it
+            const row = button.closest("tr");
+            if (row) {
+                row.remove();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll(".student-row");
+            rows.forEach(function (row) {
+                const name = row.dataset.name || "";
+                if (name.startsWith("M")) {
+                    // Apply red color to all cells in the row
+                    row.querySelectorAll("td").forEach(cell => {
+                        cell.style.color = "red";
+                    });
+                }
+            });
+        });
+    </script>
+}

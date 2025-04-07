@@ -20,6 +20,7 @@ namespace maryStudyGroup.Models
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 
-
+        [Display(Name = "myLink")]
+        public string myLink { get; set; }
     }
 }
