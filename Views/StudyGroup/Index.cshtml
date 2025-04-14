@@ -9,8 +9,7 @@
             <th>@Html.DisplayNameFor(model => model.First().Name)</th>
             <th>@Html.DisplayNameFor(model => model.First().Surname)</th>
             <th>@Html.DisplayNameFor(model => model.First().EmailAddress)</th>
-            <th>Profile</th>
-            <th>Actions</th> <!-- New Column -->
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -22,9 +21,6 @@
                 <td>@student.Surname</td>
                 <td>@student.EmailAddress</td>
                 <td>
-                    <a href="@Url.Content(student.myLink)" class="btn btn-primary">LINK</a>
-                </td>
-                <td>
                     <button onclick="removeRow(this)" class="btn btn-danger">Remove</button>
                 </td>
             </tr>
@@ -32,27 +28,102 @@
     </tbody>
 </table>
 
+<!-- Search Input -->
+<div class="form-group">
+    <input type="text" id="searchBox" class="form-control">
+    <button onclick="searchAndHighlight()" class="btn btn-info mt-2">Search</button>
+</div>
+
+<div class="mb-3">
+    <button class="btn btn-info mt-2" onclick="saveTable()">Save Table</button>
+    <button class="btn btn-info mt-2" onclick="loadTable()">Load Table</button>
+    <button class="btn btn-info mt-2" onclick="clearTable()">Clear Storage</button>
+</div>
+
+
+
 @section scripts {
     <script>
+        // Remove row
         function removeRow(button) {
-            // Gets the <tr> parent of the button and removes it
             const row = button.closest("tr");
             if (row) {
                 row.remove();
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        //  Highlight rows where first name matches search
+        function searchAndHighlight() {
+            const input = document.getElementById("searchBox").value.toLowerCase();
             const rows = document.querySelectorAll(".student-row");
-            rows.forEach(function (row) {
-                const name = row.dataset.name || "";
-                if (name.startsWith("M")) {
-                    // Apply red color to all cells in the row
+
+            rows.forEach(row => {
+                const name = row.dataset.name.toLowerCase();
+                if (name.includes(input)) {
                     row.querySelectorAll("td").forEach(cell => {
                         cell.style.color = "red";
                     });
+
+                    // Remove red after 3 seconds
+                    setTimeout(() => {
+                        row.querySelectorAll("td").forEach(cell => {
+                            cell.style.color = "";
+                        });
+                    }, 3000);
                 }
             });
-        });
+        }
+
+        function saveTable() {
+            const tableRows = document.querySelectorAll("#studyGroupTable tbody tr");
+            const tableData = [];
+
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll("td");
+                if (cells.length >= 4) {
+                    tableData.push({
+                        studentNumber: cells[0].textContent.trim(),
+                        name: cells[1].textContent.trim(),
+                        surname: cells[2].textContent.trim(),
+                        email: cells[3].textContent.trim()
+                    });
+                }
+            });
+
+            localStorage.setItem("studyGroupTable", JSON.stringify(tableData));
+            alert("Table saved to localStorage!");
+        }
+
+        function loadTable() {
+            const storedData = localStorage.getItem("studyGroupTable");
+            if (!storedData) {
+                alert("No table data found in localStorage.");
+                return;
+            }
+
+            const tableData = JSON.parse(storedData);
+            const tbody = document.querySelector("#studyGroupTable tbody");
+            tbody.innerHTML = "";
+
+            tableData.forEach(item => {
+                const row = document.createElement("tr");
+                row.classList.add("student-row");
+                row.setAttribute("data-name", item.name);
+                row.innerHTML = `
+                <td>${item.studentNumber}</td>
+                <td>${item.name}</td>
+                <td>${item.surname}</td>
+                <td>${item.email}</td>
+                <td><button class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>`;
+                tbody.appendChild(row);
+            });
+
+            alert("Table loaded from localStorage!");
+        }
+
+        function clearTable() {
+            localStorage.removeItem("studyGroupTable");
+            alert("Table data cleared from localStorage");
+        }
     </script>
 }

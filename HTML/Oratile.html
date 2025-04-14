@@ -4,6 +4,26 @@
     <meta charset="utf-8" />
     <title>Oratile</title>
     <link href="../../Content/Sheet1.css" rel="stylesheet" />
+
+    <style>
+        /* Hide all toggle sections by default */
+        .toggle-section {
+            display: none;
+        }
+
+        /* Active/visible section */
+        .active-section {
+            display: block;
+        }
+
+        .toggle-buttons {
+            margin: 20px 0;
+        }
+
+            .toggle-buttons button {
+                margin-right: 10px;
+            }
+    </style>
 </head>
 <body>
     <header>
@@ -13,7 +33,6 @@
             <ul>
                 <li><a href="../../Home/Index">Main Page</a></li>
                 <li><a href="/StudyGroup/Index">Students Table</a></li>
-
                 <li><a href="Mary.html">Mary Modiba</a></li>
                 <li><a href="Mosa.html">Mosa Mane</a></li>
                 <li><a href="Dakalo.html">Dakalo Nemamilwe</a></li>
@@ -24,7 +43,15 @@
         </nav>
     </header>
 
-    <section class="background">
+    <!-- Toggle Buttons -->
+    <div class="toggle-buttons">
+        <button data-target="background" onclick="showSection(this)">Background</button>
+        <button data-target="hobbies" onclick="showSection(this)">Hobbies</button>
+        <button data-target="modules" onclick="showSection(this)">Modules</button>
+    </div>
+
+    <!-- Sections -->
+    <section class="toggle-section" data-section="background">
         <h2>Background</h2>
         <img src="Images/cat3.jpg" class="left image">
         <p>
@@ -34,40 +61,40 @@
         </p>
     </section>
 
-    <section class="hobbies">
+    <section class="toggle-section" data-section="hobbies">
         <h2>Hobbies</h2>
         <img src="Images/cat4.jpeg" class="right image">
-        <p>Rati is a gym fanatic and enjoys using the res gym.
-        She enjoys braaiing with friends on weekends and is known for her hosting skills.
-        When not coding or working out, Rati practices drawing.</p>
+        <p>
+            Rati is a gym fanatic and enjoys using the res gym.
+            She enjoys braaiing with friends on weekends and is known for her hosting skills.
+            When not coding or working out, Rati practices drawing.
+        </p>
     </section>
 
-    <section>
+    <section class="toggle-section" data-section="modules">
         <h2>Modules</h2>
         <table>
-            <tr>
-                <th>Semester 1</th>
-                <th>Semester 2</th>
-            </tr>
-
-            <tr>
-                <td>INF272</td>
-                <td>INF271</td>
-            </tr>
-            <tr>
-                <td>INF214</td>
-                <td>INF256</td>
-            </tr>
-            <tr>
-                <td>STK210</td>
-                <td>STK220</td>
-            </tr>
-            <tr>
-                <td>WST212</td>
-                <td>FIL252</td>
-            </tr>
+            <tr><th>Semester 1</th><th>Semester 2</th></tr>
+            <tr><td>INF272</td><td>INF271</td></tr>
+            <tr><td>INF214</td><td>INF256</td></tr>
+            <tr><td>STK210</td><td>STK220</td></tr>
+            <tr><td>WST212</td><td>FIL252</td></tr>
         </table>
     </section>
 
+    <script>
+        function showSection(button) {
+            const target = button.dataset.target;
+            const sections = document.querySelectorAll(".toggle-section");
+
+            sections.forEach(section => {
+                if (section.dataset.section === target) {
+                    section.classList.add("active-section");
+                } else {
+                    section.classList.remove("active-section");
+                }
+            });
+        }
+    </script>
 </body>
 </html>
